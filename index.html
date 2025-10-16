@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>teja's-chatbot — Chat smarter. Stay current.</title>
+  <meta name="description" content="In-browser AI chat (WebLLM) with no API keys. Plus a Current Affairs page with fresh headlines." />
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="/assets/styles.css" />
+</head>
+<body>
+  <header class="nav">
+    <a href="/" class="logo">teja’s-chatbot</a>
+    <nav class="links">
+      <a href="/" class="active">Chat</a>
+      <a href="/news.html">Current Affairs</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h1>Chat smarter. Stay current.</h1>
+      <p class="muted">Runs fully in your browser. No signups. Your data stays with you.</p>
+      <p class="note">Heads up: first model load may take a few minutes and hundreds of MB. Best on desktop.</p>
+    </section>
+
+    <section class="controls card">
+      <div class="control-row">
+        <label for="model">Model</label>
+        <select id="model">
+          <option value="Qwen2-0.5B-Instruct-q4f16_1-MLC">Qwen2 0.5B Instruct (small, fastest)</option>
+          <option value="Llama-3-8B-Instruct-q4f16_1-MLC">Llama 3 8B Instruct (bigger, better)</option>
+        </select>
+      </div>
+
+      <div class="control-row">
+        <label for="temperature">Temperature: <span id="tempValue">0.7</span></label>
+        <input type="range" id="temperature" min="0" max="1.5" step="0.05" value="0.7" />
+      </div>
+
+      <details>
+        <summary>System prompt</summary>
+        <textarea id="systemPrompt" rows="3">You are a helpful, concise assistant. Prefer short, clear answers. If you are unsure, say so.</textarea>
+      </details>
+
+      <div class="control-actions">
+        <button id="loadModel" class="btn">Load / Reload Model</button>
+        <button id="clearChat" class="btn-secondary">Clear Chat</button>
+        <div class="spacer"></div>
+        <button id="exportTxt" class="btn-secondary">Export .txt</button>
+        <button id="exportJson" class="btn-secondary">Export .json</button>
+      </div>
+
+      <div id="progress" class="progress" hidden>
+        <div class="bar"><span id="progressBar" style="width: 0%"></span></div>
+        <div id="progressText" class="muted">Initializing…</div>
+      </div>
+    </section>
+
+    <section class="chat card">
+      <div id="messages" class="messages"></div>
+      <form id="composer" class="composer">
+        <textarea id="userInput" rows="2" placeholder="Type your message… (Shift+Enter for new line)"></textarea>
+        <div class="composer-actions">
+          <button id="stop" type="button" class="btn-secondary" disabled>Stop</button>
+          <button id="send" type="submit" class="btn">Send</button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© <span id="year"></span> teja’s-chatbot — In‑browser AI chat + worldwide headlines.</p>
+  </footer>
+
+  <script type="module" src="/assets/chat.js"></script>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
