@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Current Affairs — teja's-chatbot</title>
+  <meta name="description" content="Worldwide headlines aggregated from trusted sources, updated automatically." />
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="/assets/styles.css" />
+</head>
+<body>
+  <header class="nav">
+    <a href="/" class="logo">teja’s-chatbot</a>
+    <nav class="links">
+      <a href="/">Chat</a>
+      <a href="/news.html" class="active">Current Affairs</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h1>Worldwide headlines</h1>
+      <p class="muted">BBC, Reuters, AP, Al Jazeera, The Guardian, TechCrunch.</p>
+    </section>
+
+    <section class="card">
+      <div class="news-toolbar">
+        <input id="search" placeholder="Search headlines (e.g., economy, AI, sports)"/>
+        <button id="refresh" class="btn-secondary">Refresh</button>
+        <label class="switch">
+          <input id="autoRefresh" type="checkbox" checked />
+          <span>Auto-refresh (15 min)</span>
+        </label>
+      </div>
+      <div id="newsStatus" class="muted"></div>
+      <div id="newsList" class="news-list"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Sources belong to their respective owners. We proxy RSS to avoid CORS and do not store personal data.</p>
+  </footer>
+
+  <script type="module" src="/assets/news-page.js"></script>
+</body>
+</html>
